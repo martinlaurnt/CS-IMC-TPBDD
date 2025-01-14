@@ -111,7 +111,7 @@ with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE=
                 # https://py2neo.org/2021.1/bulk/index.html
                 # ATTENTION: remplacez les espaces par des _ pour nommer les types de relation
                 rel_type = cat.replace(" ", "_")
-                create_relationships(graph.auto(), importData[cat], rel_type, start_node_key="idArtist", end_node_key="idFilm")
+                create_relationships(graph.auto(), importData[cat], rel_type, start_node_key=("Artist", "idArtist"), end_node_key=("Film", "idFilm"))
             exportedCount += len(rows)
             print(f"{exportedCount}/{totalCount} relationships exported to Neo4j")
         except Exception as error:
